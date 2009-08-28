@@ -34,13 +34,12 @@ And your DS XML descriptor (e.g. `OSGI-INF/frontend.xml`):
             policy="dynamic"/>
     </component>
 
-* * * *
 ## Services:
 * `LogServiceDep`
+  * Provides `log(level: Int, message: String)` method as well (will log only if `LogService` was injected)
 * `HttpServiceDep`
 * `ConfigAdminServiceDep`
 
-* * * *
 ## Something special
 * `ServiceComponent` provides `activate`/`deactivate` methods and
-  `componentContext` variable (`Option[ComponentContext]`)
+  `componentContext` variable (`Option[ComponentContext]`). It also has `bundleContext: Option[BundleContext]` method for convinience.
