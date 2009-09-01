@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.osinka</groupId>
     <artifactId>services.dep</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
  
     <name>Service Dependencies</name>
@@ -30,8 +30,8 @@
     </licenses>
 
     <properties>
-        <scala.version>2.7.4</scala.version>
-        <felix.core.version>1.2.0</felix.core.version>
+        <scala.version>2.7.5</scala.version>
+        <osgi.version>4.1.0</osgi.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -43,15 +43,21 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.felix</groupId>
+            <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
-            <version>${felix.core.version}</version>
+            <version>${osgi.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.felix</groupId>
+            <groupId>org.osgi</groupId>
             <artifactId>org.osgi.compendium</artifactId>
-            <version>${felix.core.version}</version>
+            <version>${osgi.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>servlet-api-2.5</artifactId>
+            <version>6.1.7</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -96,26 +102,35 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <version>2.0.0</version>
                 <extensions>true</extensions>
-                <!-- <executions>
+                <executions>
                     <execution>
-                        <id>bundle-manifest</id>
-                        <phase>process-classes</phase>
+                        <id>create-bundle</id>
+                        <phase>package</phase>
                         <goals>
-                            <goal>manifest</goal>
+                            <goal>bundle</goal>
                         </goals>
                     </execution>
-                </executions> -->
+                    <execution>
+                        <id>bundle-install</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>install</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <instructions>
-                        <_versionpolicy>[$(@),$(version;=+;$(@)))</_versionpolicy>
-                        <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+                        <_versionpolicy>[$(@),$(version;+;$(@)))</_versionpolicy>
+                        <!-- <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName> -->
                         <Export-Package>com.osinka.services.dep</Export-Package>
-                        <Import-Package>
-scala;version="[2.7.4,2.8.0)",
+                        <!-- <Import-Package>
+scala;version="[2.7.4,2.8)",
+org.osgi.framework;version="[1.4,2)",
+org.osgi.service.cm;version="[1.2,2)",
+javax.servlet;version="[2.5,2.6)",
 com.osinka.services.dep,
-org.osgi.service.cm;version="[1.2,2.0)",
 *
-                        </Import-Package>
+                        </Import-Package> -->
                     </instructions>
                 </configuration>
             </plugin>
