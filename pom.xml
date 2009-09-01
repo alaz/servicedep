@@ -111,9 +111,10 @@
                         <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
                         <Export-Package>com.osinka.services.dep</Export-Package>
                         <Import-Package>
-              scala,
-              com.osinka.services.dep,
-              *
+scala;version="[2.7.4,2.8.0)",
+com.osinka.services.dep,
+org.osgi.service.cm;version="[1.2,2.0)",
+*
                         </Import-Package>
                     </instructions>
                 </configuration>
