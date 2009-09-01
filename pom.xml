@@ -120,17 +120,9 @@
                 </executions>
                 <configuration>
                     <instructions>
+                        <Bundle-RequiredExecutionEnvironment>J2SE-1.5,JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
                         <_versionpolicy>[$(@),$(version;+;$(@)))</_versionpolicy>
-                        <!-- <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName> -->
                         <Export-Package>com.osinka.services.dep</Export-Package>
-                        <!-- <Import-Package>
-scala;version="[2.7.4,2.8)",
-org.osgi.framework;version="[1.4,2)",
-org.osgi.service.cm;version="[1.2,2)",
-javax.servlet;version="[2.5,2.6)",
-com.osinka.services.dep,
-*
-                        </Import-Package> -->
                     </instructions>
                 </configuration>
             </plugin>
